@@ -1,14 +1,18 @@
 <?php
+$server = false;
 function db_connect(){
-  $servername = "localhost";
-  $username 	= "root";
-  $password 	= "";
-  $dbname 		= "contacts";
+  if ($server === false){
+    $servername = "localhost";
+    $username 	= "root";
+    $password 	= "";
+    $dbname 		= "contacts";
+  }else {
+    $servername = "localhost";
+    $username 	= "root";
+    $password 	= "machine1";
+    $dbname 		= "contacts";
 
-  // Create connection
-  $conn = mysqli_connect($servername, $username, $password,$dbname);
-  return $conn;
-}
+  }
 
 $username = '';
 $password = '';
