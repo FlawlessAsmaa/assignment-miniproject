@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "98a98fe2-1956-442a-899a-90ee09be5cfc",
+		"name": "Rest API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET REQUEST",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "key",
+						"value": "{k2}ZApM-01K2-R",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost/RestAPI/APItest.php?id=25",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"RestAPI",
+						"APItest.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "25"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST REQUEST",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "key",
+						"value": "{k2}ZApM-01K2-R",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "asmaa",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "gamal",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "01006546939258",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/RestAPI/APItest.php",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"RestAPI",
+						"APItest.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT REQUEST",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "key",
+						"value": "{k2}ZApM-01K2-R",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost/RestAPI/APItest.php?id=46&firstname=safaa&lastname=gamal&phone=12543654755",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"RestAPI",
+						"APItest.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "46"
+						},
+						{
+							"key": "firstname",
+							"value": "safaa"
+						},
+						{
+							"key": "lastname",
+							"value": "gamal"
+						},
+						{
+							"key": "phone",
+							"value": "12543654755"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE REQUEST",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "key",
+						"value": "{k2}ZApM-01K2-R",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost/RestAPI/APItest.php?id=46",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"RestAPI",
+						"APItest.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "46"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
