@@ -13,6 +13,9 @@ function db_connect(){
     $dbname 		= "contacts";
 
   }
+  
+  $conn = mysqli_connect($servername, $username, $password,$dbname);
+  return $conn;
 }  
 
 $username = '';
