@@ -13,6 +13,7 @@ function db_connect(){
     $dbname 		= "contacts";
 
   }
+}  
 
 $username = '';
 $password = '';
