@@ -6,43 +6,17 @@
 	},
 	"item": [
 		{
-			"name": "lab01",
+			"name": "login",
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
 				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "password",
-							"value": "",
-							"type": "text"
-						},
-						{
-							"key": "username",
-							"value": "asmaagamal\n",
-							"type": "text"
-						}
-					]
+					"mode": "raw",
+					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost/lab03/lab02.php?username=asmaaga",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"lab03",
-						"lab02.php"
-					],
-					"query": [
-						{
-							"key": "username",
-							"value": "asmaaga"
-						}
-					]
-				},
-				"description": "testing lab01"
+					"raw": ""
+				}
 			},
 			"response": []
 		}
