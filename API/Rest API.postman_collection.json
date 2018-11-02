@@ -21,18 +21,23 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "localhost/RestAPI/APItest.php?id=25",
+					"raw": "http://52.14.107.115/assignment-miniproject/API/APItest.php?id=40",
+					"protocol": "http",
 					"host": [
-						"localhost"
+						"52",
+						"14",
+						"107",
+						"115"
 					],
 					"path": [
-						"RestAPI",
+						"assignment-miniproject",
+						"API",
 						"APItest.php"
 					],
 					"query": [
 						{
 							"key": "id",
-							"value": "25"
+							"value": "40"
 						}
 					]
 				}
@@ -55,28 +60,33 @@
 					"formdata": [
 						{
 							"key": "firstname",
-							"value": "asmaa",
+							"value": "haya",
 							"type": "text"
 						},
 						{
 							"key": "lastname",
-							"value": "gamal",
+							"value": "saeid",
 							"type": "text"
 						},
 						{
 							"key": "phone",
-							"value": "01006546939258",
+							"value": "586947827193643197",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "localhost/RestAPI/APItest.php",
+					"raw": "http://52.14.107.115/assignment-miniproject/API/APItest.php",
+					"protocol": "http",
 					"host": [
-						"localhost"
+						"52",
+						"14",
+						"107",
+						"115"
 					],
 					"path": [
-						"RestAPI",
+						"assignment-miniproject",
+						"API",
 						"APItest.php"
 					]
 				}
@@ -96,34 +106,21 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\r\n                \"id\": 40,\r\n\r\n                \"firstname\": \"oikawa\",\r\n\r\n                \"lastname\": \"tooru\",\r\n                \r\n                \"phone\": \"14136965428615\"\r\n\r\n}"
 				},
 				"url": {
-					"raw": "localhost/RestAPI/APItest.php?id=46&firstname=safaa&lastname=gamal&phone=12543654755",
+					"raw": "http://52.14.107.115/assignment-miniproject/API/APItest.php",
+					"protocol": "http",
 					"host": [
-						"localhost"
+						"52",
+						"14",
+						"107",
+						"115"
 					],
 					"path": [
-						"RestAPI",
+						"assignment-miniproject",
+						"API",
 						"APItest.php"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "46"
-						},
-						{
-							"key": "firstname",
-							"value": "safaa"
-						},
-						{
-							"key": "lastname",
-							"value": "gamal"
-						},
-						{
-							"key": "phone",
-							"value": "12543654755"
-						}
 					]
 				}
 			},
@@ -145,18 +142,23 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "localhost/RestAPI/APItest.php?id=46",
+					"raw": "http://52.14.107.115/assignment-miniproject/API/APItest.php?id=40",
+					"protocol": "http",
 					"host": [
-						"localhost"
+						"52",
+						"14",
+						"107",
+						"115"
 					],
 					"path": [
-						"RestAPI",
+						"assignment-miniproject",
+						"API",
 						"APItest.php"
 					],
 					"query": [
 						{
 							"key": "id",
-							"value": "46"
+							"value": "40"
 						}
 					]
 				}
