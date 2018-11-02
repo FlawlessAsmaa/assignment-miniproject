@@ -1,6 +1,6 @@
 <?php
 
-$server = true;
+$server = false;
 function db_connect(){
   if ($server === false){
     $servername = "localhost";
@@ -143,65 +143,50 @@ if ($key === $header) {
     }
 
     break;
-
-
     case 'PUT':
-    if (isset($_GET['id'])){
-      $id = $_GET['id'];
-    }
-    if (isset($_GET['firstname'])){
-      $firstname = $_GET['firstname'];
-    }
-    if (isset($_GET['lastname'])){
-      $lastname = $_GET['lastname'];
-    }
-    if (isset($_GET['phone'])){
-      $phone = $_GET['phone'];
-    }
+    $json = json_decode(file_get_contents("php://input"), true);
+    print_r($json);
 
-    if(strlen($firstname)<3){
+    if(strlen($json['firstname'])<3){
       $errors[] = "First Name must be 5 or more charactes";
     }
-
-    if(strlen($lastname)<3){
+    if(strlen($json['lastname'])<3){
       $errors[] = "Last Name must be 5 or more charactes";
     }
 
-    if(strlen($phone)<11 || !is_numeric($phone)){
+    if(strlen($json['phone'])<11 || !is_numeric($json['phone'])){
       $errors[] = "Phone number is not in the correct format. ex: 905415415412";
     }
-
     if (count($errors) == 0) {
       $conn = db_connect();
-
       header("HTTP/1.0 200  Found");
-      $sql = "SELECT * FROM contact WHERE id= '".$id."'";
+      $sql = "SELECT * FROM contact WHERE id= '".$json['id']."'";
       $con_results = mysqli_query($conn, $sql);
       if (mysqli_num_rows($con_results) > 0) {
-        $sql = "UPDATE contact SET first_name='".$firstname."', last_name= '".$lastname."' WHERE id= '".$id."'";
+        $sql = "UPDATE contact SET first_name='".$json['firstname']."', last_name= '".$json['lastname']."' WHERE id= '".$json['id']."'";
         $con_results = mysqli_query($conn, $sql);
         if($con_results) {
-        $sql = "UPDATE phone_numbers SET phone_number='".$phone."' WHERE contact_id= '".$id."'";
-        $con_results = mysqli_query($conn, $sql);
-        if ($con_results) {
-          echo "success";
+          $sql = "UPDATE phone_numbers SET phone_number='".$json['phone']."' WHERE contact_id= '".$json['id']."'";
+          $con_results = mysqli_query($conn, $sql);
+          if ($con_results) {
+            echo "success";
+          } else {
+            echo "error updating phone_number table";
+            header("HTTP/1.0 404 Not Found");
+          }
         } else {
-          echo "error updating phone_number table";
+          echo "error updating contact table";
           header("HTTP/1.0 404 Not Found");
         }
-      } else {
-        echo "error updating contact table";
+      }else {
+        echo "id doesn't exist";
         header("HTTP/1.0 404 Not Found");
       }
     }else {
-      echo "id doesn't exist";
-      header("HTTP/1.0 404 Not Found");
+      foreach ($errors as $error) {
+        echo $error;
+      }
     }
-  }else {
-    foreach ($errors as $error) {
-      echo $error;
-    }
-  }
     break;
 
     case 'DELETE':
