@@ -55,6 +55,7 @@ if (mysqli_num_rows($con_results) > 0) {
     echo "you are authorized";
     if ($row['password'] === $password) {
       $result[] = $row;
+      echo "you are using system now";
     } else if ($row['password'] !== $password && $row['username'] === $username){
       $not_found = array("error_code"=> "102","error_message" => "User credentials are not correct");
       print_r(json_encode($not_found));
