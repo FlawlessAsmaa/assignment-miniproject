@@ -8,14 +8,43 @@
 		{
 			"name": "login",
 			"request": {
-				"method": "GET",
-				"header": [],
+				"method": "POST",
+				"header": [
+					{
+						"key": "key",
+						"value": "{k2}ZApM-01K2-R",
+						"type": "text"
+					}
+				],
 				"body": {
-					"mode": "raw",
-					"raw": ""
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "asmaaayyash",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "147258",
+							"type": "text"
+						}
+					]
 				},
 				"url": {
-					"raw": ""
+					"raw": "http://52.14.107.115/assignment-miniproject/API/loginAPI.php",
+					"protocol": "http",
+					"host": [
+						"52",
+						"14",
+						"107",
+						"115"
+					],
+					"path": [
+						"assignment-miniproject",
+						"API",
+						"loginAPI.php"
+					]
 				}
 			},
 			"response": []
