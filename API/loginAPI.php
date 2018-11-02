@@ -1,5 +1,5 @@
 <?php
-$server = false;
+$server = true;
 function db_connect(){
   if ($server === false){
     $servername = "localhost";
