@@ -52,7 +52,7 @@ $row = mysqli_fetch_assoc($con_results);
 
 if (mysqli_num_rows($con_results) > 0) {
   if ($row['auth'] === $_SERVER['HTTP_KEY']) {
-    //echo "you are authorized";
+    echo "you are authorized";
     if ($row['password'] === $password) {
       $result[] = $row;
     } else if ($row['password'] !== $password && $row['username'] === $username){
