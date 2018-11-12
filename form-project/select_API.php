@@ -4,7 +4,7 @@
 function db_connect(){
   $servername = "localhost";
   $username 	= "root";
-  $password 	= "";
+  $password 	= "machine1";
   $dbname 		= "contacts";
 
   // Create connection
