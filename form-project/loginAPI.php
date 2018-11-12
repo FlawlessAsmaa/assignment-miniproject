@@ -5,7 +5,7 @@ function db_connect(){
   if ($server === false){
     $servername = "localhost";
     $username 	= "root";
-    $password 	= "";
+    $password 	= "machine1";
     $dbname 		= "contacts";
   }else {
     $servername = "localhost";
