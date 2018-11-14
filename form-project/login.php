@@ -16,7 +16,7 @@
 
    <p>Please enter your Username and Password</p>
    </div>
-    <form id="Login" method="post" action="loginAPI.php">
+    <form id="Login" method="post" action="API/loginAPI.php">
         <div class="form-group">
             <input type="text" class="form-control" id="inputEmail" placeholder="Username" name = "username">
         </div>
