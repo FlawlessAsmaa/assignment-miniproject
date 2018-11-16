@@ -3,7 +3,7 @@
   <head>
     <link rel="stylesheet" type="text/css" href="form.css">
     <meta charset="utf-8">
-    <title>Insert a Record</title>
+    <title>View All Records</title>
     <link rel="stylesheet" type="text/css" href="API.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -34,7 +34,7 @@
 function db_connect(){
   $servername = "localhost";
   $username 	= "root";
-  $password 	= "machine1";
+  $password 	= "";
   $dbname 		= "contacts";
 
   // Create connection
@@ -52,7 +52,9 @@ $con_results = mysqli_query($conn, $sql);
     <th >ID</th>
     <th >First Name</th>
     <th >Last Name</th>
-    <th >Phone</th>
+    <th >Phone Title</th>
+    <th >Phone Number</th>
+    <th >Default Number</th>
   </tr>
   <?php
 while($row = mysqli_fetch_assoc($con_results)) {
@@ -60,7 +62,9 @@ while($row = mysqli_fetch_assoc($con_results)) {
   echo "<td>" . $row['id'] . "</td>";
   echo "<td>" . $row['first_name'] . "</td>";
   echo "<td>" . $row['last_name'] . "</td>";
+  echo "<td>" . $row['phone_title'] . "</td>";
   echo "<td>" . $row['phone_number'] . "</td>";
+  echo "<td>" . $row['default_num'] . "</td>";
 
 }
 
