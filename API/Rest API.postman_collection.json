@@ -21,7 +21,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://52.14.107.115/assignment-miniproject/API/APItest.php?id=40",
+					"raw": "http://52.14.107.115/assignment-miniproject/API/APItest.php?id=49",
 					"protocol": "http",
 					"host": [
 						"52",
@@ -37,7 +37,7 @@
 					"query": [
 						{
 							"key": "id",
-							"value": "40"
+							"value": "49"
 						}
 					]
 				}
@@ -60,12 +60,12 @@
 					"formdata": [
 						{
 							"key": "firstname",
-							"value": "haya",
+							"value": "asmaa",
 							"type": "text"
 						},
 						{
 							"key": "lastname",
-							"value": "saeid",
+							"value": "ayyash",
 							"type": "text"
 						},
 						{
@@ -106,7 +106,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n                \"id\": 40,\r\n\r\n                \"firstname\": \"oikawa\",\r\n\r\n                \"lastname\": \"tooru\",\r\n                \r\n                \"phone\": \"14136965428615\"\r\n\r\n}"
+					"raw": "{\r\n                \"id\": 50,\r\n\r\n                \"firstname\": \"oikawa\",\r\n\r\n                \"lastname\": \"tooru\",\r\n                \r\n                \"phone\": \"14136965428615\"\r\n\r\n}"
 				},
 				"url": {
 					"raw": "http://52.14.107.115/assignment-miniproject/API/APItest.php",
@@ -137,12 +137,9 @@
 						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
+				"body": {},
 				"url": {
-					"raw": "http://52.14.107.115/assignment-miniproject/API/APItest.php?id=40",
+					"raw": "http://52.14.107.115/assignment-miniproject/API/APItest.php?id=50",
 					"protocol": "http",
 					"host": [
 						"52",
@@ -158,7 +155,7 @@
 					"query": [
 						{
 							"key": "id",
-							"value": "40"
+							"value": "50"
 						}
 					]
 				}
