@@ -1,6 +1,8 @@
 <?php
-$server = true;
+
+//echo "asmaa";
 function db_connect(){
+	$server = true;
   if ($server === false){
     $servername = "localhost";
     $username 	= "root";
@@ -10,13 +12,16 @@ function db_connect(){
     $servername = "localhost";
     $username 	= "root";
     $password 	= "machine1";
-    $dbname 		= "contacts";
+    $dbname 	= "contacts";
 
   }
-  
+
+  // Create connection
   $conn = mysqli_connect($servername, $username, $password,$dbname);
   return $conn;
-}  
+}
+
+
 
 $username = '';
 $password = '';
@@ -46,28 +51,47 @@ if (isset($_POST['password'])) {
 
 $result = array();
 $conn = db_connect();
+if (! $conn) {
+  echo "error connecting";
+}
 $sql = "SELECT * FROM users where username ='".$username."'" ;
 $con_results = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($con_results);
 
 if (mysqli_num_rows($con_results) > 0) {
   if ($row['auth'] === $_SERVER['HTTP_KEY']) {
-    echo "you are authorized";
+    //echo "you are authorized";
     if ($row['password'] === $password) {
-      $result[] = $row;
-      echo "you are using system now";
+	  $response['response_code'] = array("code"=>"200","msg"=>"  Welcome to your Account ");
+	  $response['data'] =  $row;
+	  print_r(json_encode($response));
     } else if ($row['password'] !== $password && $row['username'] === $username){
-      $not_found = array("error_code"=> "102","error_message" => "User credentials are not correct");
-      print_r(json_encode($not_found));
+		$response['response_code'] = array("code"=>"102","msg"=>" User credentials are not correct");
+		$response['data'] =  '';
+		print_r(json_encode($response));
+		header('Content-Type: application/json');
+		header("HTTP/1.0 404 Not Authorized");
     } else if ($row['password'] !== $password && $row['username'] !== $username) {
-      $not_found = array("error_code" =>"101" ,"error_message"=> "User not found");
-      print_r(json_encode($not_found));
+		$response['response_code'] = array("code"=>"101","msg"=>" User not found");
+		$response['data'] =  '';
+		print_r(json_encode($response));
+		header('Content-Type: application/json');
+		header("HTTP/1.0 404 Not Authorized");
     }
   } else {
-      echo "you are not authorized to use our system, token invalid";
+      $response['response_code'] = array("code"=>"403","msg"=>" You are not Authorized");
+	  $response['data'] =  'No data';
+	  print_r(json_encode($response));
+	  header('Content-Type: application/json');
+	  header("HTTP/1.0 403 Not Authorized");
     }
 } else {
-  echo "ERROR - USER NOT FOUND";
+	$response['response_code'] = array("code"=>"404","msg"=>"User not Found");
+	$response['data'] =  'No data';
+	print_r(json_encode($response));
+	header('Content-Type: application/json');
+	header("HTTP/1.0 404 Not Found");
+  
 }
 
 

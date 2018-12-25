@@ -1,7 +1,8 @@
 <?php
 
-$server = true;
+
 function db_connect(){
+	$server = true;
   if ($server === false){
     $servername = "localhost";
     $username 	= "root";
@@ -38,6 +39,7 @@ if ($key === $header) {
   $lastname = '';
   $phone = '';
   $errors = array();
+  $contact = array ();
   header('Content-Type: application/json');
   switch ($method) {
     case 'GET':
@@ -53,31 +55,33 @@ if ($key === $header) {
         $sql = "SELECT * FROM contact WHERE id ='".$id."'";
         $con_results = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($con_results);
-        $contact[] = $row;
+		$contact['id'] = $row['id'];
+		$contact['first_name'] = $row['first_name'];
+		$contact['last_name'] = $row['last_name'];
         if (mysqli_num_rows($con_results) > 0) {
           $sql = "SELECT * FROM phone_numbers WHERE contact_id = '".$id."'";
           $con_results2 = mysqli_query($conn, $sql);
           $phones = array();
           while($row2 = mysqli_fetch_assoc($con_results2)) {
-            $phones['phone']=$row2['phone_number'];
+            $contact['phone_number']=$row2['phone_number'];
           }
-
-          print_r(json_encode($contact));
-          print_r(json_encode($phones));
+		  $response['response_code'] = array("code"=>"200","msg"=>" Your data retrieved Successfully ");
+		  $response['data'] =  $contact;
+		  print_r(json_encode($response));
         }else {
-          foreach ($errors as $error){
-            echo $error;
-
+			header("HTTP/1.0 404 Not Found");
+			$response['response_code'] = array("code"=>"404","msg"=>"  ID Doesn't Exist ");
+			$response['data'] =  '';
+			print_r(json_encode($response));
 
           }
-          header("HTTP/1.0 404 Not Found");
-          echo "ID Doesn't Exist";
+        } else {
+			header("HTTP/1.0 404 Not Found");
+			$response['response_code'] = array("code"=>"404","msg"=>"  Error in your input data  ");
+			$response['data'] =  $errors;
+			print_r(json_encode($response));
         }
-      } else {
-        foreach ($errors as $error) {
-          echo $error;
-        }
-    }
+    
 
       break;
 
@@ -125,22 +129,29 @@ if ($key === $header) {
             .$contactID
             .");";
        $con_results = mysqli_query($conn, $sql);
-       echo "your record inserted successfully! ";
+	   header("HTTP/1.0 200 Found");
+	   $response['response_code'] = array("code"=>"200","msg"=>"Data Inserted Successfully");
+	   $response['data'] =  '';
+	   print_r(json_encode($response));
        if(!$con_results){
-         die("SQL error " . mysqli_error($conn));
-         header('Content-Type: application/json');
-         header("HTTP/1.0 404 Not Found");
+		   header("HTTP/1.0 404 Not Found");
+		   $response['response_code'] = array("code"=>"404","msg"=>" Error Inserting your record  ");
+		   $response['data'] =  '';
+		   print_r(json_encode($response));
        }
      }else{
-       die("SQL error " . mysqli_error($conn));
-       header('Content-Type: application/json');
-       header("HTTP/1.0 404 Not Found");
+		 header("HTTP/1.0 404 Not Found");
+		 $response['response_code'] = array("code"=>"404","msg"=>" Error Inserting your record ");
+		 $response['data'] =  '';
+		 print_r(json_encode($response));
      }
     } else {
-      foreach ($errors as $error) {
-        echo $error;
+			header("HTTP/1.0 404 Not Found");
+			$response['response_code'] = array("code"=>"404","msg"=>"  Error in your input data  ");
+			$response['data'] =  $errors;
+			print_r(json_encode($response));
       }
-    }
+    
 
     break;
     case 'PUT':
@@ -169,23 +180,33 @@ if ($key === $header) {
           $sql = "UPDATE phone_numbers SET phone_number='".$json['phone']."' WHERE contact_id= '".$json['id']."'";
           $con_results = mysqli_query($conn, $sql);
           if ($con_results) {
-            echo "success";
+            header("HTTP/1.0 200  Found");
+			$response['response_code'] = array("code"=>"200","msg"=>"  your record updated successfully");
+			$response['data'] =  '';
+			print_r(json_encode($response));
           } else {
-            echo "error updating phone_number table";
             header("HTTP/1.0 404 Not Found");
+			$response['response_code'] = array("code"=>"404","msg"=>"  Error updating your phone number");
+			$response['data'] =  $errors;
+			print_r(json_encode($response));
           }
         } else {
-          echo "error updating contact table";
           header("HTTP/1.0 404 Not Found");
+		  $response['response_code'] = array("code"=>"404","msg"=>"  Error updating your Record  ");
+		  $response['data'] =  '';
+		  print_r(json_encode($response));
         }
       }else {
-        echo "id doesn't exist";
-        header("HTTP/1.0 404 Not Found");
+		  header("HTTP/1.0 404 Not Found");
+		  $response['response_code'] = array("code"=>"404","msg"=>"  ID doesn't Exist");
+		  $response['data'] =  '';
+		  print_r(json_encode($response));
       }
     }else {
-      foreach ($errors as $error) {
-        echo $error;
-      }
+		header("HTTP/1.0 404 Not Found");
+		$response['response_code'] = array("code"=>"404","msg"=>"  Error in your input data  ");
+		$response['data'] =  $errors;
+		print_r(json_encode($response));
     }
     break;
 
@@ -207,24 +228,29 @@ if ($key === $header) {
     $sql_contact = "DELETE FROM contact WHERE id ='".$id."'";
     $con_results = mysqli_query($conn, $sql_contact);
     if ($con_results) {
-    echo "deleted successfully";
+		header("HTTP/1.0 200 Found");
+		$response['response_code'] = array("code"=>"200","msg"=>" your record deleted successfully  ");
+		$response['data'] ='' ;
+		print_r(json_encode($response));
     }
     else {
-      echo "Error in Query, Check!";
-      header('Content-Type: application/json');
       header("HTTP/1.0 404 Not Found");
+	  $response['response_code'] = array("code"=>"404","msg"=>"  Error in your Query  ");
+	  $response['data'] =  '';
+	  print_r(json_encode($response));
     }
     } else {
-      echo "ID Does not exist";
-      header('Content-Type: application/json');
       header("HTTP/1.0 404 Not Found");
+	  $response['response_code'] = array("code"=>"404","msg"=>" ID doesn't Exist ");
+	  $response['data'] =  '';
+	  print_r(json_encode($response));
     }
 
     }else {
-      foreach ($errors as $error) {
-        echo $error;
-      }
       header("HTTP/1.0 404 Not Found");
+	  $response['response_code'] = array("code"=>"404","msg"=>"  Error in your input data  ");
+	  $response['data'] =  $errors;
+	  print_r(json_encode($response));
     }
     break;
 
